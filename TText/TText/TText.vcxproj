@@ -25,6 +25,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\stack.h" />
     <ClInclude Include="..\..\include\TText.h" />
+    <ClInclude Include="TLink.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7988DE3A-BDFB-417A-BC1D-253F1CCA0FA3}</ProjectGuid>

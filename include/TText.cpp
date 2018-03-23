@@ -20,6 +20,13 @@ void TText::addNextLine(char *s) {
 }
 void TText::addNextSection(char *s) {
 	TLink *tmp= new TLink(s, pCurr->getPNext(),nullptr);
+	if (pCurr->getPDown()) {
+		TLink *tmp1 = pCurr->getPDown();
+		pCurr->setPDown(tmp);
+		pCurr = pCurr->getPDown();
+		pCurr->setPNext(tmp1);
+		return;
+	}
 	pCurr->setPDown(tmp);
 	pCurr = pCurr->getPDown();
 }
@@ -77,7 +84,7 @@ TLink* TText::recursionRead(ifstream& file) {
 			if (buf[0] == '{')
 				tmp->setPDown(recursionRead(file));
 			else {
-				if (firstTmp) {
+				if (!firstTmp) {
 					firstTmp = new TLink(buf);
 					tmp = firstTmp;
 				}
@@ -173,4 +180,15 @@ void TText::GoNext() {
 		if (pCurr->getPNext())
 			stack.push(pCurr->getPNext());
 	}
+}
+int TText::DownCount() {
+	if (!pCurr->getPDown()) return 1;
+	TLink *tmp = pCurr;
+	int k=0;
+	stack.clear();
+	stack.push(pCurr = pCurr->getPDown());
+	for (; !IsEnd(); GoNext())
+		k++;
+	pCurr = tmp;
+	return k+1;
 }

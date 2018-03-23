@@ -3,28 +3,8 @@
 #include <string>
 #include "stack.h"
 #include <fstream> 
-using namespace std;
-class TLink {
-private: char str[80];
-		 TLink *pNext, *pDown;
-public: 
-	TLink(char *s = nullptr, TLink *pn = nullptr, TLink *pd = nullptr) {
-		pNext = pn;
-		pDown = pd;
-		if (!s) str[0] = '\0';
-		else strcpy_s(str,s);
-	}
-	void setPNext(TLink *pn) { pNext = pn; }
-	void setPDown(TLink *pd) { pDown = pd; }
-	TLink* getPDown() { return pDown; }
-	TLink* getPNext() { return pNext; }
-	char* getStr() { return str; }
-	friend std::ostream& operator<<(std::ostream &os,TLink &tl) {
-		os << tl.str;
-		return os;
-	}
-};
-
+#include "TLink.h"
+class TLink;
 class TText {
 private:
 	int level;
@@ -56,4 +36,10 @@ public:
 	void Reset();
 	bool IsEnd();
 	void GoNext();
+	int DownCount();
+	bool HaveNext() { return (pCurr->getPNext() != NULL); }
+	bool HavePDown(){ return (pCurr->getPDown() != NULL); }
+	TLink* getCurr() { return pCurr; }
+	void setpCurr(TLink* _pCurr) { pCurr = _pCurr; }
+	bool isDownLevel() { TLink *tmp = stack.pop(); stack.push(tmp); return (tmp->getPDown()==pCurr); }
 };
