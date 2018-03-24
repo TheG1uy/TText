@@ -18,10 +18,12 @@ void TLink::InitMem(size_t s) {
 	mem.pLast = mem.pFirst + (s - 1);
 	TLink *tmp = mem.pFree;
 	for (int i = 0; i < s - 1; i++) {
+		tmp->setStr("\\");
 		tmp->pNext = tmp + 1;
 		tmp++;
 	}
 	mem.pLast->pNext = NULL;
+	mem.pLast->setStr("\\");
 }
 void TLink::MemClean(TText &txt) {
 	for (txt.Reset(); !txt.IsEnd(); txt.GoNext())
@@ -36,5 +38,12 @@ void TLink::MemClean(TText &txt) {
 		if (strstr(tmp->str, "*") == NULL)
 			tmp->str[strlen(tmp->str) - 1] = '\0';
 		tmp++;
+	}
+}
+void TLink::printFree() {
+	TLink *tmp = mem.pFree;
+	while (tmp != NULL) {
+		cout << tmp->str << endl;
+		tmp = tmp->pNext;
 	}
 }

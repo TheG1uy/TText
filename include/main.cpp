@@ -171,14 +171,13 @@ int main()
 		Sleep(300);
 		if (flag) break;
 	}
-	
-	
-	//txt.addNextLine("aaaaa");
-	//txt.delNextLink();
-	//txt.addNextSection("DownLink");
-	//txt.delDownLink();
-	txt.save("text.txt");
+
+	//txt.save("text.txt");
 	fclose(f);
+	clrscr();
+	TLink::printFree();
 	TLink::MemClean(txt);
+	cout << endl;
+	TLink::printFree();
 	return 0;
 }

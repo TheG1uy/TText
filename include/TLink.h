@@ -26,6 +26,7 @@ public:
 	void setPDown(TLink *pd) { pDown = pd; }
 	TLink* getPDown() { return pDown; }
 	TLink* getPNext() { return pNext; }
+	void setStr(char *m) { strcpy(str, m); }
 	char* getStr() { return str; }
 	friend std::ostream& operator<<(std::ostream &os, TLink &tl) {
 		os << tl.str;
@@ -35,4 +36,5 @@ public:
 	void operator delete(void* p);
 	static void InitMem(size_t s);
 	static void MemClean(TText &txt);
+	static void printFree();
 };
