@@ -1,14 +1,12 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS  
-#include <string>
-#include "stack.h"
 #include <fstream> 
 #include "TLink.h"
-class TLink;
+
 class TText {
 private:
-	int level;
 	TLink *pFirst, *pCurr;
+	int level;
 	TStack<TLink*> stack, delstack;
 public:
 	TText(TLink *_pFirst=nullptr) {

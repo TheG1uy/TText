@@ -20,12 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\include\main.cpp" />
+    <ClCompile Include="..\..\include\TLink.cpp" />
     <ClCompile Include="..\..\include\TText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\stack.h" />
+    <ClInclude Include="..\..\include\TLink.h" />
     <ClInclude Include="..\..\include\TText.h" />
-    <ClInclude Include="TLink.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7988DE3A-BDFB-417A-BC1D-253F1CCA0FA3}</ProjectGuid>

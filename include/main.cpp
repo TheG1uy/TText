@@ -3,7 +3,7 @@
 #include<Windows.h>
 #include <iostream>
 using namespace std;
-//TMem TLink::mem;
+TMem TLink::mem;
 bool KEY[256];
 int GetKEY()
 {
@@ -66,7 +66,7 @@ void gotoxy(int x, int y)
 }
 int main()
 {
-	
+	TLink::InitMem(100);
 	setlocale(LC_CTYPE, "Russian");
 	bool flag = false;
 	TText txt;
@@ -124,7 +124,7 @@ int main()
 		case 27: flag = true; break;
 		case 13:
 			txt.addNextSection("aaaaa");
-			gotoxy(0, 0);
+			clrscr();
 			txt.print();
 			gotoxy(0, 0);
 			txt.Reset();
@@ -136,7 +136,29 @@ int main()
 
 		case 32:
 			txt.addNextLine("AAAAA");
+			clrscr();
+			txt.print();
 			gotoxy(0, 0);
+			txt.Reset();
+			ShortDown.clear();
+			ShortRight.clear();
+			down = 0;
+			level = 0;
+			break;
+		case 46:
+			txt.delNextLink();
+			clrscr();
+			txt.print();
+			gotoxy(0, 0);
+			txt.Reset();
+			ShortDown.clear();
+			ShortRight.clear();
+			down = 0;
+			level = 0;
+			break;
+		case 8:
+			txt.delDownLink();
+			clrscr();
 			txt.print();
 			gotoxy(0, 0);
 			txt.Reset();
@@ -157,5 +179,6 @@ int main()
 	//txt.delDownLink();
 	txt.save("text.txt");
 	fclose(f);
+	TLink::MemClean(txt);
 	return 0;
 }

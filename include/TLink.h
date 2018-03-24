@@ -9,9 +9,13 @@ struct TMem {
 	TLink *pFirst, *pLast, *pFree;
 };
 class TLink {
-private: char str[80];
+private: 
+		 char str[80];
 		 TLink *pNext, *pDown;
+
 public:
+	static TMem mem;
+
 	TLink(char *s = nullptr, TLink *pn = nullptr, TLink *pd = nullptr) {
 		pNext = pn;
 		pDown = pd;
@@ -27,4 +31,8 @@ public:
 		os << tl.str;
 		return os;
 	}
-}; 
+	void* operator new(size_t s);
+	void operator delete(void* p);
+	static void InitMem(size_t s);
+	static void MemClean(TText &txt);
+};

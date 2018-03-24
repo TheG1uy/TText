@@ -19,8 +19,8 @@ void TText::addNextLine(char *s) {
 	pCurr = pCurr->getPNext();
 }
 void TText::addNextSection(char *s) {
-	TLink *tmp= new TLink(s, pCurr->getPNext(),nullptr);
-	if (pCurr->getPDown()) {
+	TLink *tmp= new TLink(s, nullptr,nullptr);
+	if (pCurr->getPDown()!=NULL) {
 		TLink *tmp1 = pCurr->getPDown();
 		pCurr->setPDown(tmp);
 		pCurr = pCurr->getPDown();
@@ -28,9 +28,14 @@ void TText::addNextSection(char *s) {
 		return;
 	}
 	pCurr->setPDown(tmp);
+	//pCurr->setPNext()
 	pCurr = pCurr->getPDown();
 }
-void TText::delNextLink() {
+void TText::delNextLink() { 
+	delete pCurr->getPNext();
+	pCurr->setPNext(NULL);
+   // goPrevLink();
+	/*
 	if (pCurr) 
 		if (pCurr->getPNext()) {
 			if (pCurr->getPNext()->getPDown()) {
@@ -49,9 +54,12 @@ void TText::delNextLink() {
 			}
 			else { delstack.push(pCurr); goNextLink();  delete pCurr; pCurr = delstack.pop(); pCurr->setPNext(nullptr); }
 		}
-		//else { delete pCurr; goPrevLink(); pCurr->setPNext(nullptr); }
+		//else { delete pCurr; goPrevLink(); pCurr->setPNext(nullptr); } */
 }
 void TText::delDownLink() {
+	delete pCurr->getPDown();
+	pCurr->setPDown(NULL);
+	/*
 	if (pCurr)
 		if (pCurr->getPDown()) {
 			delstack.push(pCurr);
@@ -62,8 +70,9 @@ void TText::delDownLink() {
 			//goPrevLink();
 			pCurr = delstack.pop();
 			delete pCurr->getPDown();
-		}
 			
+		}
+			*/
 }
 char* TText::getLine() {
 	return pCurr->getStr();

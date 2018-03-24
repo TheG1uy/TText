@@ -21,6 +21,9 @@
     <ClCompile Include="..\..\include\TText.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\include\TLink.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\stack.h">
@@ -29,7 +32,7 @@
     <ClInclude Include="..\..\include\TText.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="TLink.h">
+    <ClInclude Include="..\..\include\TLink.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
